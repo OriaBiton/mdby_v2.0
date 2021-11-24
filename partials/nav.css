@@ -102,12 +102,13 @@ nav li{
   transform: rotate(-45deg);
 }
 
-#top-nav-shabbat{
+.nav-icon-couple{
   display: flex;
   align-items: center;  
 }
-.candles-icon{
+.time-icon{
   height: var(--icon-size);
+  margin-left: 5px;
 }
 
 .side-nav{
@@ -235,4 +236,13 @@ nav li{
 }
 .dropdown-content a:hover{
   background-color: var(--bright);
+}
+.divider::before{
+  content: '';
+  width: 3px;
+  height: 3rem;
+  background-color: var(--secondary);
+  display: block;
+  border-radius: 2rem;
+  opacity: .2;
 }

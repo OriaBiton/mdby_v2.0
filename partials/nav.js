@@ -1,4 +1,56 @@
 setNav();
+FillHebDate();
+FillShabbatInfo();
+
+async function FillHebDate(){
+  const date = new Date();
+  const y = date.getFullYear(),
+  m = date.getMonth() + 1,
+  d = date.getDate(),
+  wkd = date.getDay();
+  const url = `https://www.hebcal.com/converter/?cfg=json&gy=${y}&gm=${m}&gd=${d}&g2h=1`;
+  const data = await (await fetch(url)).json();  
+  const dayNames = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
+  const dateStr = data.hebrew.replace(/[\u0591-\u05C7]/g, '');
+  byId('day-of-week').innerText = `יום ${dayNames[wkd]}`;
+  byId('heb-date').innerText = dateStr;  
+}
+async function FillShabbatInfo(){
+  const url = 'https://www.hebcal.com/shabbat/?cfg=json&geonameid=295548&m=50';
+  const {items} = await (await fetch(url)).json();  
+  for (let i = 0; i < items.length; i++){
+    if (items[i].category == 'parashat'){
+      const parasha = items[i].hebrew;
+      byId('parasha').innerText = parasha;
+    }
+    else {
+      const time = ConvertToHour(items[i]?.date);
+      if (items[i].category == 'candles'){
+        byId('hadlaka').innerText = time + ' | ';
+      }
+      else if (items[i].category == 'havdalah'){        
+        byId('havdala').innerText = time;
+      }
+    }
+  }
+  function ConvertToHour(date){
+    const dt = new Date(date);
+    let mins = dt.getMinutes();
+    let hours = dt.getHours();
+    mins = addZero(mins);
+    hours = addZero(hours);
+    return  hours + ':' + mins;
+
+    function addZero(n){
+      if (n < 10) return '0' + n;
+      else return n;
+    }
+  }
+}
+
+
+
+
 function setNav(){
   const nav = document.querySelector('nav');
   const topNav = document.querySelector('.top-nav');
@@ -45,3 +97,5 @@ function setNav(){
     });
   }
 }
+
+function byId(id){return document.getElementById(id);}
