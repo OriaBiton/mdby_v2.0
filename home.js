@@ -5,6 +5,13 @@ setServices();
 markAsOpenOrClosed();
 setBot();
 setInterval(markAsOpenOrClosed, 60000);
+window.addEventListener('load', loaded);
+
+function loaded(){
+  tippy('[data-tippy-content]', {
+    theme: 'light', allowHTML: true, animation: 'perspective-subtle'
+  });
+}
 
 
 function markAsOpenOrClosed() {

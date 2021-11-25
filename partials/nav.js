@@ -17,22 +17,32 @@ async function FillHebDate(){
 }
 async function FillShabbatInfo(){
   const url = 'https://www.hebcal.com/shabbat/?cfg=json&geonameid=295548&m=50';
-  const {items} = await (await fetch(url)).json();  
-  for (let i = 0; i < items.length; i++){
-    if (items[i].category == 'parashat'){
-      const parasha = items[i].hebrew;
+  const {items} = await (await fetch(url)).json();
+  let hadlaka, havdala;
+  for (const item of items){
+    if (item.category == 'parashat'){
+      const parasha = item.hebrew;
       byId('parasha').innerText = parasha;
     }
     else {
-      const time = ConvertToHour(items[i]?.date);
-      if (items[i].category == 'candles'){
-        byId('hadlaka').innerText = time + ' | ';
+      const time = ConvertToHour(item?.date);
+      if (item.category == 'candles'){
+        hadlaka = time;
+        byId('hadlaka').innerText = time;
       }
-      else if (items[i].category == 'havdalah'){        
+      else if (item.category == 'havdalah'){
+        havdala = time;    
         byId('havdala').innerText = time;
       }
     }
   }
+  byId('top-nav-shabbat').dataset.tippyContent = `
+    <strong>כניסת שבת: </strong>${hadlaka}
+    <br>
+    <strong>יציאת שבת: </strong>${havdala}
+    <br> (בת ים)
+  `;
+
   function ConvertToHour(date){
     const dt = new Date(date);
     let mins = dt.getMinutes();

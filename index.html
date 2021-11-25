@@ -6,7 +6,11 @@
     <link href="styles.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/perspective-subtle.css">
     <script src="https://kit.fontawesome.com/b4add97165.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@popperjs/core@2" defer></script>    
+    <script src="https://unpkg.com/tippy.js@6" defer></script>
     <script src="loader.js" defer></script>
     <script src="home.js" defer></script>
     <title>המועצה הדתית בת ים</title>
@@ -14,7 +18,7 @@
   <body>
     <nav data-html-src></nav>
     <header>
-      <section>            
+      <section>
         <div class="hero-wrapper">
           <div class="hero">
             <img src="images/logo.png" alt="המועצה הדתית">
@@ -189,7 +193,9 @@
       <h2 class="reveal">ערוצי תקשורת</h2>
       <div class="container">
         <div class="bot-wrapper">
-          <img src="images/bot2.png" class="bot" alt="בוט המועצה">
+          <img src="images/bot2.png" class="bot" alt="בוט המועצה"
+            data-tippy-content="בוט המועצה, נותן שירות יומם ולילה"
+          >
           <img src="images/bot-hand.png" class="bot-hand">
         </div>
         <ul class="communication-channels">

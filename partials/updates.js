@@ -7,14 +7,17 @@ async function setContent(){
   const updates = await (await fetch('partials/updates.json')).json();
   for (const update of updates){
     const {title, content, date, img, link, linkText} = update;    
-    wrapper.innerHTML += `    
+    wrapper.innerHTML += `
     <div class="blog-slider__item swiper-slide">
       <div class="blog-slider__img">
         <img src="${img}" alt="${title}">
       </div>
       <div class="blog-slider__content">
-        <span class="blog-slider__code">${date}</span>
-        <div class="blog-slider__title">${title}</div>
+        <div class="spacer"></div>
+        <div>
+          <span class="blog-slider__code">${date}</span>
+          <div class="blog-slider__title">${title}</div>
+        </div>
         <div class="blog-slider__text">${content}</div>
         <a href="${link}" class="blog-slider__button">${linkText}</a>
       </div>
