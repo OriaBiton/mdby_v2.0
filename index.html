@@ -11,14 +11,16 @@
     <script src="https://kit.fontawesome.com/b4add97165.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@popperjs/core@2" defer></script>    
     <script src="https://unpkg.com/tippy.js@6" defer></script>
-    <script src="loader.js" defer></script>
+    <script src="loader.js" type="module" defer></script>
     <script src="home.js" defer></script>
     <title>המועצה הדתית בת ים</title>
   </head>
-  <body>
+  <body class="loading">
+    <loading-screen></loading-screen>
     <nav data-html-src></nav>
     <header>
       <section>
+        <img class="bg-img" src="images/wave.jpg">
         <div class="hero-wrapper">
           <div class="hero">
             <img src="images/logo.png" alt="המועצה הדתית">
@@ -121,9 +123,11 @@
           </div>
         </div>
       </div> <!-- Container -->
-      <svg id="david-star" width="600" height="692.82">
+      <i class="fas fa-star-of-david big"></i>
+      <i class="fas fa-star-of-david small"></i>
+      <!-- <svg id="david-star" width="600" height="692.82">
         <path d="M 47.631413,492.11477 552.36859,492.11491 300,54.999953 Z M 300,637.81981 552.36851,200.70493 47.631403,200.70481 Z">
-      </svg>
+      </svg> -->
     </section>
 
     <svg id="curve-up" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -193,10 +197,15 @@
       <h2 class="reveal">ערוצי תקשורת</h2>
       <div class="container">
         <div class="bot-wrapper">
-          <img src="images/bot2.png" class="bot" alt="בוט המועצה"
-            data-tippy-content="בוט המועצה, נותן שירות יומם ולילה"
+          <img src="images/bot-head.png"
+          class="bot-organ bot-head" data-bias="180"
           >
-          <img src="images/bot-hand.png" class="bot-hand">
+          <img src="images/bot.png" class="bot" alt="בוט המועצה"
+            data-tippy-content="בוט המועצה, נותן שירות יומם ולילה"
+          >          
+          <img src="images/bot-hand.png"
+          class="bot-organ bot-hand" data-bias="150"
+          >
         </div>
         <ul class="communication-channels">
           <li class="whatsapp">

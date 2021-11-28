@@ -1,3 +1,4 @@
+import '/components/loading-screen.js';
 loadHTML(document);
 
 function loadHTML(root){
@@ -17,7 +18,7 @@ function loadHTML(root){
       const newScript = document.createElement("script");
       Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
       newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-      oldScript.parentNode.replaceChild(newScript, oldScript);
+      oldScript.parentNode.replaceChild(newScript, oldScript)
     });
   }
 }

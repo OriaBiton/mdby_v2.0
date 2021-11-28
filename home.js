@@ -55,17 +55,23 @@ function markAsOpenOrClosed() {
 function setBot(){
   const wrapper = document.querySelector('.communication-channels');
   const hand = document.querySelector('.bot-hand');
-  wrapper.addEventListener('mousemove', setHand);
+  const head = document.querySelector('.bot-head');
+  wrapper.addEventListener('mousemove', move);
 
-  function setHand(e){
-    const {left, top} = hand.getBoundingClientRect();
-    const center_x = left + hand.clientWidth;
-    const center_y = top + hand.clientHeight;
+  function move(e){
+    rotate(hand, e);
+    rotate(head, e);
+  }
+  function rotate(organ, e){    
+    const {left, top} = organ.getBoundingClientRect();
+    const center_x = left + organ.clientWidth;
+    const center_y = top + organ.clientHeight;
     const mouse_x = e.clientX - left;
     const mouse_y = e.clientY - top;
     const radians = Math.atan2(mouse_x - center_x, mouse_y - center_y);
     const degree = (radians * (180 / Math.PI) * -1) + 90;
-    hand.style.transform = `rotate(${degree - 150}deg)`;
+    const {bias} = organ.dataset;
+    organ.style.transform = `rotate(${degree - bias}deg)`;
   }
 }
 function setServices(){
