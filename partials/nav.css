@@ -8,7 +8,7 @@ nav li{
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   box-shadow: 0px 0px 30px rgba(58, 54, 34, 0.15);
 }
@@ -28,9 +28,7 @@ nav li{
 }
 .top-nav li{
   margin-left: 8rem;
-  list-style: none;
   font-size: 1.8rem;
-  opacity: .75;
   position: relative;
   transition: .5s;
 }
@@ -111,15 +109,17 @@ nav li{
 }
 
 .side-nav{
+  --side-nav-width: 40rem;
   position: fixed;
   top: 0;
-  right: calc(-33vw - 4rem);
+  right: calc(-1 * var(--side-nav-width));
   height: 100vh;
-  width: 33vw;
-  max-width: 403px;
+  width: var(--side-nav-width);
+  max-width: 90%;
   z-index: 11;
   padding: 1rem 2rem;
   background: var(--grad1);
+  box-sizing: border-box;
   transition: .5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .side-nav .header{margin-bottom: 1rem;}
@@ -244,4 +244,50 @@ nav li{
   display: block;
   border-radius: 2rem;
   opacity: .2;
+}
+
+@media screen and (max-width: 750px) {
+  .top-nav ul{
+    margin: 0 auto;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .top-nav li{
+    margin-left: 0;
+    font-size: 1.6rem;
+  }
+  .top-nav .link, .top-nav .icons{
+    display: none;
+  }
+  .top-nav-wrapper{
+    width: 95%;
+  }
+  header section{
+    padding-top: 7rem;
+  }
+  header .bg-img{
+    height: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(to top, rgb(0, 0, 0), rgba(0,0,0,0));
+    -webkit-mask-image: linear-gradient(to top, rgb(0, 0, 0), rgba(0,0,0,0));
+  }
+  .hero{width: unset;}
+  .hero-wrapper{
+    width: 95%;
+    display: block;
+  }
+  header a.btn{
+    display: block;
+    text-align: center;
+  }
+  .header-buttons{
+    margin-top: 5rem;
+  }
+  .header-buttons .btn:first-child{
+    margin-left: 0;
+    margin-bottom: 2rem;
+  }
+  .updates{
+    width: unset;
+  }
 }

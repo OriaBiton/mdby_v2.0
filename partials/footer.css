@@ -82,10 +82,16 @@ footer .newsletter button{
   animation-duration: 20s;
 }
 @keyframes move-forever {
-  0% {
-      transform: translate3d(-90px,0,0);
+  0% {transform: translate3d(-90px,0,0)}
+  100% {transform: translate3d(85px,0,0)}
+}
+@media screen and (max-width: 750px) {
+  footer .container{
+    padding-top: 7rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
   }
-  100% {
-      transform: translate3d(85px,0,0);
-  }
+  footer .container > *{margin-bottom: 3rem;}
+
 }

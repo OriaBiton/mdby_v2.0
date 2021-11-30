@@ -5,9 +5,10 @@ class LoadingScreen extends HTMLElement {
     shadow.innerHTML = `
       <link rel="stylesheet" href="components/loading-screen.css">
       <img src="images/logo-white.png" loading="eager">
-      <span class="loader">
-        <span class="loader-inner"></span>
-      </span>
+      <div class="loader">
+        <div class="shadow"></div>
+        <div class="box"></div>
+      </div>
     `;
     window.addEventListener('load', hide);
 

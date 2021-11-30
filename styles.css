@@ -9,7 +9,7 @@
   --dark: #606886;
   --grad1: linear-gradient(147deg, var(--primary), #084E8D);
   --good: rgb(37, 224, 137);
-  --danger: rgb(226, 63, 13);
+  --danger: rgb(226, 63, 13);  
 }
 html, body{
   font-size: 10px;
@@ -83,3 +83,7 @@ input{
 .danger{color: var(--danger);}
 .ltr{direction: ltr;}
 .flex{display: flex;}
+@media screen and (max-width: 750px) {
+  .container{width: 95%;}
+  
+}

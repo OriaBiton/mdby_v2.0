@@ -100,6 +100,7 @@ function setNav(){
   
   }
   function sticky(){
+    if (isMobile()) return;
     const sticyPoint = nav.offsetTop;
     window.addEventListener('scroll', () => {
       if (window.scrollY > sticyPoint) topNav.classList.add('sticky');
@@ -108,4 +109,5 @@ function setNav(){
   }
 }
 
+function isMobile(){return document.body.offsetWidth < 750;}
 function byId(id){return document.getElementById(id);}
