@@ -1,0 +1,39 @@
+<script src="/assets/js/add-pic.js" defer=""></script>
+<div id="load" data-firebase-auth="" data-firebase-storage="" data-firebase-functions="" data-title="העלאת תצלום"></div>
+
+  <h1>כניסה</h1>
+  <form class="p-side-3">
+
+    <div class="field">
+      <label for="email">דואר אלקטרוני</label>
+      <input type="email" id="email" name="email" required="" placeholder="הזינו את כתובת הדוא&quot;ל שלכם">
+    </div>
+    <div class="field">
+      <label for="pass">סיסמה</label>
+      <input type="password" id="pass" name="pass" required="" placeholder="הזינו את הסיסמה שלכם">
+      <p class="m-0">
+        <small id="forgot-pass" class="pointer">שכחתי סיסמה</small>
+      </p>
+    </div>
+    <div class="middle">
+      <button type="submit">כניסה</button>
+    </div>
+    <button id="not-member" class="small-btn">אין לי משתמש</button>
+  </form>
+
+
+  <h1>העלאת תצלום</h1>
+  <div>
+    <label for="file">קובץ</label>
+    <input type="file" id="file" accept="image/*" required="">
+  </div>
+  <div>
+    <label for="desc">פירוט</label>
+    <input type="text" id="desc" required="">
+  </div>
+  <div>
+    <label for="password">סיסמה</label>
+    <input type="password" id="password" required="">
+  </div>
+  <button>העלה</button>
+

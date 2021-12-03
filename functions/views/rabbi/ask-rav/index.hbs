@@ -1,0 +1,39 @@
+<script src="/assets/js/rav-videos.js" defer=""></script>
+<div id="load" data-title="שאלה לרב" data-firebase-database=""></div>
+
+  
+  <div class="p-side-3">
+    <h4>
+      נשמח להעביר את השאלות שלכם לרב הראשי, ונחזיר אליכם את התשובה שלו בהקדם.
+    </h4>
+    <div class="flex">
+      <small-section class="mb-5" data-name="פרטי הודעה">
+        
+        <form>
+          <div class="flex mb-1">
+            <div class="field ml-3">
+              <label for="ask-name">שם:</label>
+              <input id="ask-name" type="text" name="name" maxlength="30">
+            </div>
+            <div class="field">
+              <label for="ask-email">דוא"ל:</label>
+              <input id="ask-email" type="email" name="email" maxlength="70">
+            </div>
+          </div>
+          <div class="field">
+            <label for="ask-question">שאלה:</label>
+            <textarea id="ask-question" maxlength="1000"></textarea>
+          </div>
+          <button type="submit">שלח</button>
+        </form>
+      </small-section>
+      <img src="/images/letter.jpg" class="post mb-5" alt="מכתב">
+    </div>
+    <a name="videos"></a>
+    <small-section class="mb-1" data-name="סרטונים">
+      
+      <div class="split2" id="videos"></div>
+    </small-section>
+  </div>
+
+    

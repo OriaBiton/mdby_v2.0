@@ -1,0 +1,92 @@
+<script src="/assets/js/send-marriage-file-request.js" defer=""></script>
+<div id="load" data-title="בקשה להעתק תעודת נישואין" data-notyf="" data-firebase-functions=""></div>
+
+
+  <div class="split2 middle">
+    <div>
+      <h3>הזמנת העתק תעודת נישואין או העתק כתובה</h3>
+      <h4>באמצעות טופס מקוון</h4>
+      <form class="shadow mb-3 txt-right">
+        <p>
+          <strong>
+            עלות השירות:
+          </strong>
+          <br>
+          העתק נאמן למקור / העתק כתובה - 66 ש"ח.
+          <br>
+          כל העתק נוסף - 19 ש"ח.
+        </p>
+        <p>
+          <strong>
+            שימו לב:
+          </strong>
+          <br>
+          לאחר שליחת הבקשה והודעת "הבקשה נשלחה בהצלחה", מחלקת נישואין מקבלת את הבקשה אוטומטית ומטפלת באופן מידי. אורך
+          הטיפול יכול להיארך עד שבעה ימי עסקים, אך נעשים מאמצים רבים כדי שהבקשה תטופל בהקדם האפשרי. ניתן להתעדכן מדי פעם
+          אודות סטטוס הבקשה בטל' 035557917 או בוואצאפ 0525550125.
+          <br>
+          בברכה, מחלקת נישואין.
+        </p>
+        <h5 class="middle">נא למלא את כל השדות בטופס</h5>
+        <div class="field">
+          <label for="name">שם המזמין</label>
+          <input id="name" type="text" required="">
+        </div>
+        <div class="field">
+          <label for="phone">מספר טלפון נייד</label>
+          <input id="phone" type="phone" required="">
+        </div>
+        <div class="field">
+          <p class="mb-0"><b>מסמך להזמנה</b></p>
+          <div>
+            <input name="doc" type="radio" value="העתק נאמן למקור" id="copy">
+            <label for="copy" class="inline">העתק נאמן למקור</label>
+          </div>
+          <div>
+            <input name="doc" type="radio" value="העתק כתובה" id="ktuba">
+            <label for="ktuba" class="inline">העתק כתובה</label>
+          </div>
+        </div>
+        <p class="mb-0"><b>פרטי הבעל</b></p>
+        <div class="field">
+          <label for="husband-last-name">שם משפחה</label>
+          <input id="husband-last-name" type="text" required="">
+        </div>
+        <div class="field">
+          <label for="husband-first-name">שם פרטי</label>
+          <input id="husband-first-name" type="text" required="">
+        </div>
+        <div class="field">
+          <label for="husband-id">מספר ת"ז נוכחי</label>
+          <input id="husband-id" type="number" required="">
+        </div>
+        <p class="mb-0"><b>פרטי האישה</b></p>
+        <div class="field">
+          <label for="wife-last-name">שם משפחה לפני נישואין</label>
+          <input id="wife-last-name" type="text" required="">
+        </div>
+        <div class="field">
+          <label for="wife-first-name">שם פרטי</label>
+          <input id="wife-first-name" type="text" required="">
+        </div>
+        <div class="field">
+          <label for="wife-id">מספר ת"ז</label>
+          <input id="wife-id" type="number" required="">
+        </div>
+        <div class="field">
+          <label for="wed-date">תאריך חתונה לועזי</label>
+          <input type="date" id="wed-date">
+        </div>
+        <div class="field">
+          <label for="email">כתובת דוא"ל</label>
+          <input type="email" id="email">
+        </div>
+        <div class="middle">
+          <button type="submit">שלח טופס</button>
+        </div>
+      </form>
+    </div>
+    <div class="middle">
+      <img src="/images/books.jpg" class="post" alt="ספרים">
+    </div>
+  </div>

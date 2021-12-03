@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+	<title>המועצה הדתית בת ים</title>
+	<link rel="stylesheet" type="text/css" href="/assets/css/board-style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap">
+	<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js" defer></script>
+	<script src="/assets/js/firebase-init.js" defer></script>
+	<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js" defer></script>
+	<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-functions.js" defer></script>
+	<script src="/assets/js/board.js" defer></script>
+</head>
+
+<body firebase-database>
+	<header>
+		<img src="/images/logo.png" class="icon center" alt="לוגו המועצה">
+		<img src="/images/board/bat-yam.png" class="icon left" alt="סמל בת ים">
+		<svg class="header-wave" viewBox="0 0 500 55" preserveAspectRatio="none" width: "100%">
+			<defs>
+				<linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%"></stop>
+					<stop offset="100%"></stop>
+				</linearGradient>
+			</defs>
+			<path d="M0 39 C150 110 271 -90 500 39 L500 0 L0 0 Z"></path>
+		</svg>
+	</header>
+
+	<div class="container">
+
+		<section class="wide middle mt-0">
+			<h1 class="mt-0 flex">
+				<span id="heb-date"></span>
+				<span id="current-hour"></span>
+			</h1>
+			<div class="p-1 flex">
+				<figure class="ball bubble good"></figure>
+				<h2 class="is-open good m-0">
+					המועצה
+					<span id="is-open-word">פתוחה</span>
+					כעת
+				</h2>
+				<figure class="ball bubble good"></figure>
+			</div>
+			<div id="shabbat-info">
+				<h2 id="parasha" class="mb-0"></h2>
+				<div class="flex">
+					<div>
+						<p class="m-0">
+							<strong>🕯️ הדלקת נרות:</strong>
+							<span id="hadlaka">19:22</span>
+						</p>
+					</div>
+					<div>
+						<p class="m-0">
+							<strong>✨ הבדלה:</strong>
+							<span id="havdala">20:18</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="default-layout">
+			<section class="wide">
+				<h1>שעות פעילות</h1>
+				<div class="p-1">
+					<div class="middle">
+						<table>
+							<tr>
+								<td>ראשון</td>
+								<td>שני</td>
+								<td>שלישי</td>
+								<td>רביעי</td>
+								<td>חמישי</td>
+								<td>שישי - שבת</td>
+							</tr>
+							<tr class="ltr">
+								<td>
+									08:30 — 12:00
+								</td>
+								<td>08:30 — 12:00</td>
+								<td>
+									08:30 — 12:00
+								</td>
+								<td>08:30 — 12:00</td>
+								<td>
+									08:30 — 12:00
+								</td>
+								<td>המועצה סגורה</td>
+							</tr>
+						</table>
+						<h2 class="mb-0">
+							😷 הכניסה בעטיית מסכה בלבד 😷
+						</h2>
+					</div>
+				</div>
+			</section>
+
+			<section class="middle wide">
+				<h1>יצירת קשר</h1>
+				<div class="p-1 flex evenly">
+					<img id="bot-img" src="/images/bot2.png" alt="בוט">
+					<div>
+						<img src="/images/board/whatsapp.png" alt="ווצאפ">
+						<h3 class="m-0">בוט</h3>
+						<h2 class="mb-0">050-878-5115</h2>
+					</div>
+					<div>
+						<img src="/images/phone.png" alt="טלפון">
+						<h3 class="m-0">משרד</h3>
+						<h2 class="mb-0">03-5068883</h2>
+					</div>
+				</div>
+			</section>
+
+			<div class="sections">
+				<section class="two-thirds">
+					<h1>מה חדש?</h1>
+					<div class="p-side-3" id="updates-wrap">
+						<div id="updates"></div>
+					</div>
+				</section>
+				
+				<section>
+					<h1>מאירים את העיר</h1>
+					<h3 class="middle m-0">החלוקה של הערכות בקומה 2</h3>
+					<div class="p-1 flex">
+						<img src="/images/brochures/light-city.jpeg" class="post">
+					</div>
+				</section>
+
+				{{!-- <section>
+					<h1>התחתנו השבוע</h1>
+					<div class="p-1">
+						<div class="flex">
+							<img id="marriage-img" src="" class="post shadow" alt="מתחתנים">
+						</div>
+					</div>
+				</section> --}}
+			</div>
+
+			<section class="p-1 wide" id="news">
+				<span class="news-title">מבזקים:</span>
+				<p class="m-0">
+				</p>
+			</section>
+		</div>
+
+
+	</div> <!-- Container -->
+	<footer>
+		<svg class="header-wave" viewBox="0 0 500 55" preserveAspectRatio="none" width: "100%"
+			style="transform: rotate(180deg);">
+			<path d="M0 39 C150 110 271 -90 500 39 L500 0 L0 0 Z"></path>
+		</svg>
+	</footer>
+</body>
+
+</html>

@@ -1,1 +1,3 @@
 images/
+functions/*.js
+functions/node_modules/

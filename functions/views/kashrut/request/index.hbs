@@ -1,0 +1,220 @@
+<script src="/assets/js/kosher-request-form.js" defer=""></script>
+<div id="load" data-title="בקשת תעודת כשרות" data-firebase-functions=""></div>
+
+
+  <div>
+    <h3 class="middle">טופס בקשה לקבלת תעודת הכשר</h3>
+    <h4 class="middle">באמצעות טופס מקוון</h4>
+    <form class="shadow mb-3">
+      <h5 class="middle">נא למלא את כל השדות בטופס</h5>
+      <div class="field">
+        <label for="name">שם מלא</label>
+        <input type="text" id="name">
+      </div>
+      <div class="field">
+        <label for="id">מספר ת"ז</label>
+        <input type="number" id="id">
+      </div>
+      <div class="field">
+        <label for="phone">טלפון</label>
+        <input type="tel" id="phone">
+      </div>
+      <div class="field">
+        <label for="biz-name">שם עוסק (לפי מע"מ)</label>
+        <input type="text" id="biz-name">
+      </div>
+      <div class="field">
+        <label for="biz-num">מספר עוסק מורשה</label>
+        <input type="number" id="biz-num">
+      </div>
+      <div class="field">
+        <label for="biz-type">סוג העסק</label>
+        <input type="text" id="biz-type">
+      </div>
+      <div class="field">
+        <p class="mb-0"><b>סוג המטבח</b></p>
+        <div>
+          <input id="meat" type="radio" name="kitchen" value="בשרי" checked="">
+          <label for="meat" class="inline">בשרי</label>
+        </div>
+        <div>
+          <input id="milk" type="radio" name="kitchen" value="חלבי">
+          <label for="milk" class="inline">חלבי</label>
+        </div>
+        <div>
+          <input id="parve" type="radio" name="kitchen" value="פרווה">
+          <label for="parve" class="inline">פרווה</label>
+        </div>
+      </div>
+      <div class="field">
+        <p class="mb-0"><b>ימי עבודה</b></p>
+        <div class="inline ml-1">
+          <input id="sunday" value="ראשון" type="checkbox" name="workdays" checked="">
+          <label for="sunday" class="inline">ראשון</label>
+        </div>
+        <div class="inline ml-1">
+          <input id="monday" value="שני" type="checkbox" name="workdays" checked="">
+          <label for="monday" class="inline">שני</label>
+        </div>
+        <div class="inline ml-1">
+          <input id="tuesday" value="שלישי" type="checkbox" name="workdays" checked="">
+          <label for="tuesday" class="inline">שלישי</label>
+        </div>
+        <div class="inline ml-1">
+          <input id="wednesday" value="רביעי" type="checkbox" name="workdays" checked="">
+          <label for="wednesday" class="inline">רביעי</label>
+        </div>
+        <div class="inline ml-1">
+          <input id="thursday" value="חמישי" type="checkbox" name="workdays" checked="">
+          <label for="thursday" class="inline">חמישי</label>
+        </div>
+        <div class="inline ml-1">
+          <input id="friday" value="שישי" type="checkbox" name="workdays">
+          <label for="friday" class="inline">שישי</label>
+        </div>
+        <div class="inline">
+          <input id="saturday" value="מוצאי שבת" type="checkbox" name="workdays">
+          <label for="saturday" class="inline">מוצאי שבת</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="open-hours">שעות פתיחת העסק</label>
+        <input type="text" id="open-hours">
+      </div>
+      <div class="field">
+        <label for="close-hours">שעות סגירה (ימי חול ושישי)</label>
+        <input type="text" id="close-hours">
+      </div>
+      <div class="field">
+        <p class="mb-0"><b>הכשר מבוקש</b></p>
+        <div>
+          <input id="kosher" type="radio" name="kosher" value="כשר" checked="">
+          <label for="kosher" class="inline">כשר</label>
+        </div>
+        <div>
+          <input id="glat" type="radio" name="kosher" value="גלאט">
+          <label for="glat" class="inline">כשר גלאט</label>
+        </div>
+      </div>
+      <div class="field">
+        <p class="mb-0 mxw-65">
+          <b>אופי הפעילות וחומרי גלם</b>
+          <br>
+          פרט את אופי פעילות העסק, לדוגמא; מסעדת מאכלים בשריים, האם מתקיימת פעילות אפיה, בישול. מוצרי מזון נרכשים (בשר,
+          ירקות וכיוצ"ב, וכדו' האם יש עובדים לא יהודים במטבח החם.
+        </p>
+        <textarea id="activity" maxlength="500"></textarea>
+      </div>
+      <div class="field">
+        <p class="mb-0"><b>
+            סוג העסק (ניתן לבחור יותר מאחד)
+          </b></p>
+        <div>
+          <input id="buffet" type="checkbox" name="type" value="מזנון">
+          <label for="buffet" class="inline">מזנון</label>
+        </div>
+        <div>
+          <input id="restaurant" type="checkbox" name="type" data-show="visitor-amount" value="מסעדה, בית קפה וכל מקום אוכל">
+          <label for="restaurant" class="inline">מסעדה, בית קפה וכל מקום אוכל</label>
+        </div>
+        <div>
+          <input id="hotel" type="checkbox" name="type" data-show="room-amount" value="בית מלון">
+          <label for="hotel" class="inline">בית מלון</label>
+        </div>
+        <div>
+          <input id="health" type="checkbox" name="type" data-show="room-amount" value="בתי הבראה, בתי אבות, בתי הארחה ואכסניית נוער">
+          <label for="health" class="inline">בתי הבראה, בתי אבות, בתי הארחה ואכסניית נוער</label>
+        </div>
+        <div>
+          <input id="education" type="checkbox" name="type" value="מוסדות חינוך">
+          <label for="education" class="inline">מוסדות חינוך</label>
+        </div>
+        <div>
+          <input id="halls" type="checkbox" name="type" data-show="visitor-amount" value="אולמות אירועים">
+          <label for="halls" class="inline">אולמות אירועים</label>
+        </div>
+        <div>
+          <input id="industry" type="checkbox" name="type" data-show="employee-amount" value="מפעים ובתי חרושת למזון ומשקאות (כולל מאפיות מגדניות ואוכל מוכן\קייטרינג)">
+          <label for="industry" class="inline">מפעים ובתי חרושת למזון <br>ומשקאות (כולל מאפיות מגדניות ואוכל
+            מוכן\קייטרינג)</label>
+        </div>
+        <div>
+          <input id="shops" type="checkbox" name="type" data-show="which-shop" value="חנויות מזון, פירות, ירקות ובשר">
+          <label for="shops" class="inline">חנויות מזון, פירות, ירקות ובשר</label>
+        </div>
+        <div>
+          <input id="supermarket" type="checkbox" name="type" data-show="size" value="מרכולים">
+          <label for="supermarket" class="inline">מרכולים</label>
+        </div>
+      </div>
+
+      <div id="criteria">
+        <div id="visitor-amount-field" class="criterion hidden field">
+          <label for="visitor-amount">כושר קליטה (מקומות ישיבה)</label>
+          <input id="visitor-amount" type="number" data-pre="כושר קליטה: ">
+        </div>
+        <div id="room-amount-field" class="criterion hidden field">
+          <label for="room-amount">מספר חדרים</label>
+          <input id="room-amount" type="number" data-pre="מספר חדרים: ">
+        </div>
+        <div id="employee-amount-field" class="criterion hidden field">
+          <label for="employee-amount">מספר עובדים</label>
+          <input id="employee-amount" type="number" data-pre="מספר עובדים: ">
+        </div>
+        <div id="which-shop-field" class="criterion hidden field">
+          <p class="mb-0"><b>
+              סוג חנות
+            </b></p>
+          <div>
+            <input id="retail" name="which-shop" type="radio" value="חנות מזון קמעונאי" data-pre="סוג חנות: ">
+            <label for="retail" class="inline">חנות מזון קמעונאי</label>
+          </div>
+          <div>
+            <input id="vegetables" name="which-shop" type="radio" value="חנות ירקות ואטליזים" data-pre="סוג חנות: ">
+            <label for="vegetables" class="inline">חנות ירקות ואטליזים</label>
+          </div>
+          <div>
+            <input id="wholesale" name="which-shop" type="radio" value="חנות סיטונאית או מחסן סיטונאי" data-pre="סוג חנות: ">
+            <label for="wholesale" class="inline">חנות סיטונאית או מחסן סיטונאי</label>
+          </div>
+        </div>
+        <div id="size-field" class="criterion hidden field">
+          <label for="size">גודל במ"ר</label>
+          <input id="size" type="number" data-pre="גודל במטר רבוע: ">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="info">מידע נוסף</label>
+        <textarea id="info" maxlength="500"></textarea>
+      </div>
+      <div class="field mxw-65">
+        <input id="agree" type="checkbox">
+        <label for="agree" class="inline">ידוע לי כי בקשה זו ודיווח זה הינם הכרחיים לקבלת תעודת כשרות. הנני מאשר בזה
+          נכונות הפרטים המופיעים לעיל ומתחייב להודיע מיידית למזכירות מחלקת הכשרות במועצה הדתית בת-ים על כל שינוי שיחול
+          בהם. כמו כן ידוע לי כי אי דיווח יכול לגרור אחריו ביטול תעודת ההכשר אף ללא הודעה מראש מצד הרבנות והמועצה הדתית
+          בת-ים.</label>
+      </div>
+      <div class="field">
+        <label for="sign">שם החותם ותפקידו</label>
+        <input type="text" id="sign">
+      </div>
+
+      <div class="middle">
+        <button type="submit">שלח טופס</button>
+      </div>
+    </form>
+    <hr>
+    <div class="middle">
+      <h4>באמצעות טופס פיזי</h4>
+      <p>
+        יש להוריד את הטופס (כפתור למטה), למלא אותו ולשלוח למייל: rabanut-batyam@walla.co.il
+        <br>
+        או בפקס 03-5081666
+      </p>
+      <a href="/assets/office/kashrut-request.docx" class="cta hvr-bg">הורדת הטופס</a>
+    </div>
+  </div>
+  <div class="middle">
+    <img src="/images/kashrut-red-min.jpg" class="post" alt="תעודת כשרות">
+  </div>

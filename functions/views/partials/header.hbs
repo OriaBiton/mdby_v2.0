@@ -1,0 +1,35 @@
+<header>
+  <link rel="stylesheet" href="/assets/partials/header.css">
+  <img class="bg-img" src="/images/wave.jpg">
+  {{#if home }}
+    <div class="hero-wrapper">
+      <div class="hero">
+        <h1 class="logo">
+          <img src="/images/logo.png" class="logo" alt="לוגו המועצה הדתית בת ים">
+        </h1>
+        <div class="header-buttons">
+          <a class="btn cta">שירותי המועצה</a>
+          <a class="btn">יצירת קשר</a>
+        </div>
+      </div>
+      {{> updates }}    
+    </div>
+  {{else}}
+    <div class="container">
+      <img src="/images/logo-small.png" class="logo" alt="לוגו">
+      <h1>מקוואות המועצה</h1>
+    </div>  
+  {{/if}}
+  <div class="wave-bottom">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+      <defs>
+        <linearGradient id="MyGradient" x1="0" x2="0" y1="1" y2="0">
+          <stop offset="0" stop-color="var(--bright)" />
+          <stop offset="1" stop-color="#FFEEC7" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <script src="/assets/partials/header.js"></script>
+</header>
