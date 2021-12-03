@@ -1,3 +1,5 @@
-images/
+public/images/
+public/assets/video/
+public/assets/pdf/
 functions/*.js
 functions/node_modules/
