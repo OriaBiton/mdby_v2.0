@@ -3,3 +3,4 @@ public/assets/video/
 public/assets/pdf/
 functions/*.js
 functions/node_modules/
+functions/private-modules/
