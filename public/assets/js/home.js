@@ -21,15 +21,11 @@ function markAsOpenOrClosed() {
 
   function open() {
     if (isOpen) return;
-    h3.classList.remove('danger');
-    h3.classList.add('good');
     h3.innerHTML = 'המועצה <span class="good">פתוחה</span> כעת';
     isOpen = true;
   }
   function close() {
     if (!isOpen) return;
-    h3.classList.remove('good');
-    h3.classList.add('danger');
     h3.innerHTML = 'המועצה <span class="danger">סגורה</span> כעת';
     isOpen = false;
   }

@@ -11,10 +11,8 @@
   align-items: center;
   z-index: 100;
 }
-:host(.ready){transition: .3s;}
-:host(.ready.hide){
-  visibility: hidden;
-  opacity: 0;
+:host(.hide){
+  transform: translateX(100vw);
 }
 img{
   margin-bottom: 5rem;

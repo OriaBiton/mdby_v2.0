@@ -1,12 +1,9 @@
-addEventListener('load', loaded);
+const end = document.getElementById('end');
+end.addEventListener('click', handleSubmitClick);
+document.querySelectorAll('button.small')
+  .forEach(b => b.addEventListener('click', handleClick));
+document.getElementById('start').addEventListener('click', view);
 
-function loaded(){
-  const end = document.getElementById('end');
-  end.addEventListener('click', handleSubmitClick);
-  document.querySelectorAll('button.small')
-    .forEach(b => b.addEventListener('click', handleClick));
-  document.getElementById('start').addEventListener('click', view);
-}
 function view(e){
   e.preventDefault();
   hide(this);

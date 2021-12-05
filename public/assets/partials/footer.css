@@ -21,7 +21,7 @@ footer .container{
   display: flex;
   padding-top: 12rem;
   text-align: right;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 footer h3{
@@ -65,6 +65,11 @@ footer input{
   padding: 1rem;
   border-radius: 3rem;  
   text-align: left;
+  height: unset;
+  border: unset;
+}
+footer ::placeholder{
+  font-size: 1.4rem;
 }
 /* Animation */
 .parallax > use {

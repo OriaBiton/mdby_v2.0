@@ -10,12 +10,12 @@ class LoadingScreen extends HTMLElement {
         <div class="box"></div>
       </div>
     `;
-    window.addEventListener('load', hide);
+    window.addEventListener('load', hide);    
 
     function hide(e){
       document.body.classList.remove('loading');
-      shadow.host.classList.add('ready', 'hide');
+      shadow.host.classList.add('transition-fade');
     }
-  }
+  }  
 }
 customElements.define('loading-screen', LoadingScreen);

@@ -17,14 +17,20 @@ html, body{
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+.transition-fade {
+  transition: 0.6s;
+  transform: translateX(100vw);
+}
+html.is-animating .transition-fade {
+  transform: translateX(0) !important;
+}
+body.loading > *:not(loading-screen){display: none;}
 body{
   font-family: "Rubik", "Calibri", "Arial", sans-serif;
   margin: 0; padding: 0;
-  background: linear-gradient(to bottom, #FFEEC7, var(--brightest));
   color: var(--dark);
 }
 
-body.loading > *:not(loading-screen){display: none;}
 body::-webkit-scrollbar{width: 12px;}
 body::-webkit-scrollbar-track{background-color: var(--bright);}
 body::-webkit-scrollbar-thumb{background-color: var(--highlight);}
@@ -35,10 +41,11 @@ a{
 button{cursor: pointer;}
 img, iframe{max-width: 100%; max-height: 100%;}
 main{
-  padding-top: 5rem;
+  padding: 8rem 0 15rem 0;
+  background: linear-gradient(to bottom, var(--bright), var(--brightest));
   text-align: center;
 }
-main, .container{width: 70%; margin: 0 auto;}
+.container{width: 70%; margin: 0 auto;}
 .mb-5{margin-bottom: 50px;}
 .flex.btwn{justify-content: space-between;}
 .pb-3{padding-bottom: 30px;}
@@ -82,7 +89,11 @@ main .flex{
   justify-content: space-evenly;
 }
 .flex{display: flex;}
-form{padding: 2rem}
+form{
+  padding: 2rem;
+  border: var(--secondary) 1px solid;
+  border-radius: 1rem;
+}
 .thin{font-weight: 100;}
 h3{font-size: 28px; margin: 3rem 0;}
 h4{font-size: 22px; font-weight: 100; margin: 2.4rem 0;}
@@ -102,7 +113,6 @@ h5{font-size: 2rem; font-weight: 100; margin: 1.5rem 0;}
 .m-3{margin: 3rem;}
 .m-0{margin: 0 !important}
 .mb-1{margin-bottom: 1rem}
-.shadow{box-shadow: 0 5px 15px -2px rgba(0, 0, 0, 0.1);}
 .soft-edge{border-radius: 5px;}
 .p-side-1{padding-left: 1rem; padding-right: 1rem;}
 .p-side-2{padding-left: 2rem; padding-right: 2rem;}
@@ -117,21 +127,21 @@ h5{font-size: 2rem; font-weight: 100; margin: 1.5rem 0;}
   border-radius: 5px;
   box-sizing: border-box;
 }
-.split2 > *{
-  display: inline-block;
-  width: 40%;
-  vertical-align: top;
-  margin: 2rem;
+.split2{
+  column-count: 2;
+  column-gap: 2vw;
 }
+
 .cols-3{column-count: 3}
 .cols-3 div{display: inline-block;}
 .cols-2{column-count: 2}
 .hidden{display: none !important}
-p, ul, ol{
+main p, main ul, main ol{
   font-size: 1.8rem;
-  line-height: 1.7em;
-  padding-right: 2rem;
+  line-height: 1.7em; 
+  margin-bottom: 2rem;
 }
+main ul, main ol{padding-right: 2rem;}
 .ml-3{margin-left: 30px;}
 .mt-0{margin-top: 0;}
 .w-13{width: 13rem; display: inline-block;}
@@ -140,7 +150,6 @@ main a{
   color: var(--primary);
   transition: color 0.2s;
 }
-h3, h4{text-align: center;}
 a.cta, button{
   font-size: 26px;
   background-color: var(--primary);
@@ -185,10 +194,14 @@ input:focus, textarea:focus{
 }
 input {
 	width: 100%;
-	height: 2rem;
-	border: none;
+	height: 4rem;
+	border: 1px var(--secondary) solid;
 	transition: box-shadow .3s;
 	color: var(--dark);
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
 }
 input[type="radio"], input[type="checkbox"]{
   width: unset;
@@ -212,7 +225,10 @@ figcaption{
   border-radius: 5px;
   padding: 5px;
 }
-table{font-size: 1.6rem}
+table{
+  font-size: 1.6rem;
+  display: table;
+}
 tr:first-of-type{background-color: var(--grey) !important}
 tr:nth-of-type(even){background-color: var(--bright);}
 tr:nth-of-type(odd){background-color: var(--brightest)}
@@ -226,7 +242,7 @@ hr{color: var(--bright); width: 75%; margin: 0 auto;}
 .center{margin: 0 auto;}
 a>div{color: var(--darkest);}
 .field{margin-bottom: 2.5rem}
-button.active, a.cta.good, .good{background-color: var(--good)}
+button.active, a.cta.good{background-color: var(--good)}
 .w-100p{width: 100%;}
 .m-1{margin: 1rem !important}
 .m-2{margin: 2rem !important}
@@ -234,10 +250,9 @@ small{font-size: 1.2rem}
 
 @media screen and (max-width: 800px){
   :root{--cardW: 150px;}
-  main, .container{width: 95%;}
+  .container{width: 95%;}
   section{margin-bottom: 6rem}
-  .split2 > *
-    {width: 95%; margin: 10px auto 30px auto; display: block;}
+  .split2{columns: unset;}
   .mbl-mb-3{margin-bottom: 30px;}
   textarea{height: 10rem;}
   .p-side-3{padding-left: 1rem; padding-right: 1rem;}

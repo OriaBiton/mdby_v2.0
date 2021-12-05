@@ -3,22 +3,47 @@ export default class Loader {
     const loadDiv = document.getElementById('load');
     window.addEventListener('load', afterLoad);
     Loader.cssList = [];
-    //Loader.loadHTML(document);
-    // maybe a recursion error. not needed with HBS.
     firebase();
     setTitles();
     notyf();
-
+    
     function setTitles(){
-      const {title} = loadDiv?.dataset;
-      document.title = title;
-      document.querySelector('header h1').innerText = title;
+      if (location.pathname == '/') return;
+      const title = loadDiv?.dataset?.title;
+      if (title) document.title = title;
+      document.querySelector('header h1').innerText = document.title;
     }
     function needs(need){
       return loadDiv?.hasAttribute(`data-${need}`);
     }
     function afterLoad(){
       recaptcha();
+      setSwup();      
+    }
+    function setSwup(){
+      Loader.swup = new Swup({
+        linkSelector: `a[href]:not([href^="#"]):not([data-no-swup]):not([href="/"])`
+      });
+      Loader.swup.on('contentReplaced', onContentReplaced);
+
+      function onContentReplaced(){        
+        Loader.init();
+        reRunScripts();
+        window.scrollTo(0, 0);
+        closeSideNav();
+
+        function closeSideNav(){
+          const expanded = document.querySelector('nav.expanded');
+          if (expanded) expanded.classList.remove('expanded');
+        }
+        function reRunScripts(){
+          document.querySelectorAll("main script").forEach(oldScript => {
+            const newScript = document.createElement("script");      
+            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+          });
+        }
+      }
     }
     async function notyf(){
       if (!needs('notyf')) return;
@@ -65,29 +90,7 @@ export default class Loader {
     l.href = path;
     document.head.appendChild(l);
     Loader.cssList.push(path);
-  }
-
-  static loadHTML(root){
-    const targets = root.querySelectorAll('[data-html-src]');
-    targets.forEach(async target => {
-      const {tagName, dataset} = target;
-      const autoSrc = tagName.toLowerCase();
-      const src = `/assets/partials/${(dataset.htmlSrc || autoSrc)}.html`;
-      const html = await (await fetch(src)).text();
-      setInnerHTML(target, html);
-      Loader.loadHTML(target);
-    });
-  
-    function setInnerHTML(elm, html){
-      elm.innerHTML = html;
-      elm.querySelectorAll("script").forEach(oldScript => {
-        const newScript = document.createElement("script");
-        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-        oldScript.parentNode.replaceChild(newScript, oldScript)
-      });
-    }
-  }
+  }  
 
 }
 Loader.init();

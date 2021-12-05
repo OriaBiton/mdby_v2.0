@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/styles.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/b4add97165.js" crossorigin="anonymous"></script>
     <script src="/assets/components/loading-screen.js" rel="preload" as="script"></script>
-    <script src="/assets/components/sections.js" type="module"></script>
+    <script src="/assets/components/x-section.js" type="module"></script>
+    <script src="https://unpkg.com/swup@latest/dist/swup.min.js" defer></script>
     <script src="/assets/js/loader.js" type="module" defer></script>
     <title>המועצה הדתית בת ים</title>
   </head>
   <body class="loading">
     <loading-screen></loading-screen>
     {{> nav }}
-    {{> header home=home }}
-    <main>{{{ body }}}</main>
-    {{> footer }}
+    <div id="swup">
+      {{> header home=home }}
+      <main>
+        <div class="container">{{{ body }}}</div>
+      </main>
+      {{> footer }}
+    </div>
   </body>
 </html>
