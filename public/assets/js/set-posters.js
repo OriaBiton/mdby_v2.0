@@ -1,4 +1,4 @@
-addEventListener('load', setPosters);
+addEventListener('firebaseLoaded', setPosters);
 
 function setPosters() {
   const postersDiv = document.getElementById('posters');

@@ -1,10 +1,11 @@
-addEventListener('load', () => {
+setTable();
+function setTable(){
   const table = document.querySelector('table');
   sortTable();
   enumerate();
   document.querySelectorAll('button').forEach(b =>
     b.addEventListener('click', handleFilter));
-
+  
   //Need to handle duplicate names... no unique ID
   function toJSON() {
     const obj = {};
@@ -20,7 +21,7 @@ addEventListener('load', () => {
       obj[name] = { address, phone, category, kosherLevel, kosherType };
     }
     console.log(obj);
-
+  
   }
   function sortTable() {
     let arr = [];
@@ -67,7 +68,7 @@ addEventListener('load', () => {
   function handleFilter(e) {
     e.preventDefault();
     const categories = document.querySelectorAll('[data-filtered]');
-
+  
     if (isActive(this)) {
       unfilter(this);
       deactivate(this);
@@ -78,7 +79,7 @@ addEventListener('load', () => {
       this.closest('div').dataset.filtered = true;
       activate(this);
     }
-
+  
     function handleIfSecondFilter(btn) {
       const btns = btn.closest('div').querySelectorAll('button');
       for (const b of btns) {
@@ -117,7 +118,7 @@ addEventListener('load', () => {
       }
     }
   }
-
+  
   function hide(e) {
     e.classList.add('hidden');
   }
@@ -132,6 +133,6 @@ addEventListener('load', () => {
   }
   function isActive(e) {
     return e.classList.contains('active');
-  }
+  }  
 
-});
+}

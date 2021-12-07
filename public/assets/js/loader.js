@@ -1,46 +1,54 @@
 export default class Loader {
   static init(){
-    const loadDiv = document.getElementById('load');
-    window.addEventListener('load', afterLoad);
-    Loader.cssList = [];
-    firebase();
-    setTitles();
-    notyf();
-    
+    window.addEventListener('DOMContentLoaded', DOMLoaded);
+    window.addEventListener('pageReplaced', resources);
+    setLoaderDiv();
+    resources();
+
+    //FIX: hitting Back to homepage, update script wont run
+
+    function resources(){
+      firebase();
+      setTitles();
+      notyf();
+    }
     function setTitles(){
       if (location.pathname == '/') return;
-      const title = loadDiv?.dataset?.title;
+      const title = Loader.div?.dataset?.title;
       if (title) document.title = title;
       document.querySelector('header h1').innerText = document.title;
     }
     function needs(need){
-      return loadDiv?.hasAttribute(`data-${need}`);
+      return Loader.div?.hasAttribute(`data-${need}`);
     }
-    function afterLoad(){
+    function setLoaderDiv(){
+      Loader.div = document.getElementById('load');
+    }
+    function DOMLoaded(){
       recaptcha();
-      setSwup();      
+      setSwup();
     }
     function setSwup(){
       Loader.swup = new Swup({
-        linkSelector: `a[href]:not([href^="#"]):not([data-no-swup]):not([href="/"])`
+        linkSelector: `a[href]:not([href^="#"]):not([data-no-swup]):not([href="/"]):not([target="_blank"])`,
+        animateHistoryBrowsing: true
       });
       Loader.swup.on('contentReplaced', onContentReplaced);
 
-      function onContentReplaced(){        
-        Loader.init();
-        reRunScripts();
+      function onContentReplaced(){
+        console.log('Content Replaced');
+        setLoaderDiv();
+        runScripts();
         window.scrollTo(0, 0);
-        closeSideNav();
 
-        function closeSideNav(){
-          const expanded = document.querySelector('nav.expanded');
-          if (expanded) expanded.classList.remove('expanded');
-        }
-        function reRunScripts(){
-          document.querySelectorAll("main script").forEach(oldScript => {
+        function runScripts(){
+          document.querySelectorAll('[data-loaded]').forEach(s => s.remove());
+          document.querySelectorAll(":is(main, header) script").forEach(oldScript => {
             const newScript = document.createElement("script");      
             Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+            newScript.dataset.loaded = true;
             oldScript.parentNode.replaceChild(newScript, oldScript);
+            newScript.onload = () => window.dispatchEvent(new Event('pageReplaced'));
           });
         }
       }
@@ -69,10 +77,11 @@ export default class Loader {
       await import(dirURL + 'firebase-app.js');
       await import('/assets/js/firebase-init.js');
       await import(dirURL + 'firebase-analytics.js');
-      if (hasAuth) import(dirURL + 'firebase-auth.js');
-      if (hasFunctions) import(dirURL + 'firebase-functions.js');
-      if (hasDatabase) import(dirURL + 'firebase-database.js');
-      if (hasStorage) import(dirURL + 'firebase-storage.js');
+      if (hasAuth) await import(dirURL + 'firebase-auth.js');
+      if (hasFunctions) await import(dirURL + 'firebase-functions.js');
+      if (hasDatabase) await import(dirURL + 'firebase-database.js');
+      if (hasStorage) await import(dirURL + 'firebase-storage.js');
+      window.dispatchEvent(new Event('firebaseLoaded'));
       window.firebase.analytics();
     }
   }
@@ -84,12 +93,10 @@ export default class Loader {
     document.head.appendChild(script);
   }
   static loadCss(path) {
-    if (Loader.cssList.includes(path)) return;
     const l = document.createElement('link');
     l.rel = 'stylesheet';
     l.href = path;
     document.head.appendChild(l);
-    Loader.cssList.push(path);
   }  
 
 }

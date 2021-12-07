@@ -1,4 +1,4 @@
-addEventListener('load', setVideos);
+addEventListener('firebaseLoaded', setVideos);
 
 function setVideos(){
   const videosDiv = document.getElementById('videos');

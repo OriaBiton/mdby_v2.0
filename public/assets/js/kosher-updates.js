@@ -1,4 +1,4 @@
-addEventListener('load', setUpdates);
+addEventListener('firebaseLoaded', setUpdates);
 
 function setUpdates() {
   const updatesDiv = document.getElementById('updates');

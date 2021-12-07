@@ -1,4 +1,4 @@
-addEventListener('load', setQuestions);
+addEventListener('firebaseLoaded', setQuestions);
 
 function setQuestions() {
   const questionsDiv = document.getElementById('questions');

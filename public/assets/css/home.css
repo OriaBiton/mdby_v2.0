@@ -305,7 +305,10 @@ section#communicate{
 
 
 @media screen and (max-width: 750px) {  
-  section#services{padding-top: 3rem;}
+  section#services{
+    padding-top: 3rem;
+    margin-bottom: 0;
+  }
   .card{margin: 1rem;}
   .card img{width: 15rem;}
   i.fa-star-of-david.big{bottom: 0;}

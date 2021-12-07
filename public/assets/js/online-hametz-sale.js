@@ -1,4 +1,4 @@
-addEventListener('load', () => {
+addEventListener('firebaseLoaded', () => {
   const form = document.querySelector('form');
 
   document.getElementById('represent').addEventListener('change', enableRepresented);

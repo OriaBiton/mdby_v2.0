@@ -7,6 +7,7 @@
   --bright: #fff2d4;
   --brightest: #fffbf1;
   --dark: #606886;
+  --darkest: #4f5259;
   --grey: #ededed;
   --grad1: linear-gradient(147deg, var(--primary), #084E8D);
   --good: rgb(37, 224, 137);
@@ -24,6 +25,7 @@ html, body{
 html.is-animating .transition-fade {
   transform: translateX(0) !important;
 }
+body.loading{background-color: var(--highlight);}
 body.loading > *:not(loading-screen){display: none;}
 body{
   font-family: "Rubik", "Calibri", "Arial", sans-serif;
@@ -130,6 +132,7 @@ h5{font-size: 2rem; font-weight: 100; margin: 1.5rem 0;}
 .split2{
   column-count: 2;
   column-gap: 2vw;
+  margin-bottom: 5rem;
 }
 
 .cols-3{column-count: 3}
@@ -162,7 +165,7 @@ a.cta, button{
 }
 a.menu{
   font-size: 26px;
-  background-color: var(--primary);
+  background-color: var(--secondary);
   padding: 10px 0;
   color: var(--brightest);
   border-radius: 3px;
@@ -172,8 +175,9 @@ a.menu{
   box-sizing: border-box;
   margin: 2.5rem auto;
 }
-a.cta:hover, button:hover, a.menu:hover{
-  background-color: var(--darkest)}
+a.menu:hover, a.cta:hover, button:hover{
+  background-color: var(--darkest);
+}
 .ml-1{margin-left: 10px;}
 button.small, a.cta.small{margin: 0; font-size: 1.8rem;}
 button.disabled{background-color: var(--grey); color: grey;}

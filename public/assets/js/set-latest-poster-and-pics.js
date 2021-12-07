@@ -1,4 +1,4 @@
-addEventListener('load', () => {
+addEventListener('firebaseLoaded', () => {
   setLatestPoster();
   setLatestPictures();
 });

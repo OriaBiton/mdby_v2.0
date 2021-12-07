@@ -1,4 +1,4 @@
-addEventListener('load', run);
+run();
 
 function run(){
   var searchFilterArray;
