@@ -1,6 +1,7 @@
 public/images/
 public/assets/video/
 public/assets/pdf/
+public/assets/fonts/
 functions/*.js
 functions/node_modules/
 functions/private-modules/

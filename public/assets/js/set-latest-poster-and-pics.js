@@ -1,7 +1,7 @@
-addEventListener('firebaseLoaded', () => {
+addEventListener('load', () => {
   setLatestPoster();
   setLatestPictures();
-});
+}, {once: true});
 
 async function setLatestPictures() {
   const div = document.getElementById('pictures');

@@ -1,16 +1,45 @@
 export default class Loader {
   static init(){
-    window.addEventListener('DOMContentLoaded', DOMLoaded);
-    window.addEventListener('pageReplaced', resources);
-    setLoaderDiv();
+    Loader.css = [];
+    document.addEventListener('DOMContentLoaded', DOMLoaded);
+    window.addEventListener('pageReplaced', setNewPage);
     resources();
-
-    //FIX: hitting Back to homepage, update script wont run
-
-    function resources(){
-      firebase();
+    
+    async function resources(){
+      console.log('resources');
+      setLoaderDiv();
       setTitles();
       notyf();
+      await firebase();      
+    }
+    async function setNewPage(){
+      console.log('setNewPage');
+      await resources();
+      runScripts();
+    }
+    function runScripts(){
+      console.log('runScripts');
+      const scripts = document.querySelectorAll(":is(main, header) script");
+      Loader.scriptsToLoad = scripts.length;
+      Loader.scriptsLoaded = 0;
+
+      for (const oldScript of scripts) {
+        const newScript = document.createElement("script");
+        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+        newScript.addEventListener('load', countUntilLoad, {once: true});
+      }
+
+      function countUntilLoad(){
+        Loader.scriptsLoaded++;
+        console.log('loaded: ', Loader.scriptsLoaded);
+        console.log('to Load: ', Loader.scriptsToLoad);
+        if (Loader.scriptsLoaded == Loader.scriptsToLoad){
+          console.log('scriptsToLoad >= scriptsLoaded');
+          window.dispatchEvent(new Event('load'));            
+        }
+      }
     }
     function setTitles(){
       if (location.pathname == '/') return;
@@ -28,29 +57,18 @@ export default class Loader {
       recaptcha();
       setSwup();
     }
+
     function setSwup(){
       Loader.swup = new Swup({
         linkSelector: `a[href]:not([href^="#"]):not([data-no-swup]):not([href="/"]):not([target="_blank"])`,
         animateHistoryBrowsing: true
       });
       Loader.swup.on('contentReplaced', onContentReplaced);
-
+      
       function onContentReplaced(){
         console.log('Content Replaced');
-        setLoaderDiv();
-        runScripts();
+        window.dispatchEvent(new Event('pageReplaced'));
         window.scrollTo(0, 0);
-
-        function runScripts(){
-          document.querySelectorAll('[data-loaded]').forEach(s => s.remove());
-          document.querySelectorAll(":is(main, header) script").forEach(oldScript => {
-            const newScript = document.createElement("script");      
-            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-            newScript.dataset.loaded = true;
-            oldScript.parentNode.replaceChild(newScript, oldScript);
-            newScript.onload = () => window.dispatchEvent(new Event('pageReplaced'));
-          });
-        }
       }
     }
     async function notyf(){
@@ -67,22 +85,23 @@ export default class Loader {
       if (needs('recaptcha')) import('https://www.google.com/recaptcha/api.js');
     }
     async function firebase(){
+      const dirURL = 'https://www.gstatic.com/firebasejs/8.3.0/';
+      if (!window.firebase){
+        await import(dirURL + 'firebase-app.js');
+        await import('/assets/js/firebase-init.js');
+        await import(dirURL + 'firebase-analytics.js');
+        window.firebase.analytics();
+      }
       const hasAuth = needs('firebase-auth');
       const hasFunctions = needs('firebase-functions');
       const hasDatabase = needs('firebase-database');
       const hasStorage = needs('firebase-storage');
-      const hasFirebase = hasAuth || hasStorage || hasFunctions || hasDatabase;
-      if (!hasFirebase) return;
-      const dirURL = 'https://www.gstatic.com/firebasejs/8.3.0/';
-      await import(dirURL + 'firebase-app.js');
-      await import('/assets/js/firebase-init.js');
-      await import(dirURL + 'firebase-analytics.js');
+      const needsFirebase = hasAuth || hasStorage || hasFunctions || hasDatabase;
+      if (!needsFirebase) return;
       if (hasAuth) await import(dirURL + 'firebase-auth.js');
       if (hasFunctions) await import(dirURL + 'firebase-functions.js');
       if (hasDatabase) await import(dirURL + 'firebase-database.js');
       if (hasStorage) await import(dirURL + 'firebase-storage.js');
-      window.dispatchEvent(new Event('firebaseLoaded'));
-      window.firebase.analytics();
     }
   }
   static async appendScript(src, cb){
@@ -93,11 +112,13 @@ export default class Loader {
     document.head.appendChild(script);
   }
   static loadCss(path) {
+    if (Loader.css.includes(path)) return;
     const l = document.createElement('link');
     l.rel = 'stylesheet';
     l.href = path;
     document.head.appendChild(l);
-  }  
+    Loader.css.push(path);
+  }
 
 }
 Loader.init();

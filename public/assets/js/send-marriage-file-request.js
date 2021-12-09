@@ -1,4 +1,4 @@
-addEventListener('firebaseLoaded', () => {
+addEventListener('load', () => {
   document.querySelector('form').addEventListener('submit', sendMail);
   function sendMail(e) {
     e.preventDefault();

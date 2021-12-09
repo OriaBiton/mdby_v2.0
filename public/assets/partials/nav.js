@@ -92,7 +92,7 @@ function setNav(){
       openBtn.addEventListener('click', show);
       darkener.addEventListener('click', hide);
       closeBtn.addEventListener('click', hide);
-      window.addEventListener('load', hide);
+      window.addEventListener('pageReplaced', hide);
   
       function show(){ nav.classList.add('expanded'); }
       function hide(){ nav.classList.remove('expanded'); }      

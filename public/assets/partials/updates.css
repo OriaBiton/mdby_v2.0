@@ -151,7 +151,7 @@
   color: var(--dark);
   margin-bottom: 30px;
   line-height: 1.5em;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 .blog-slider__button {
   display: inline-flex;
@@ -164,7 +164,7 @@
   justify-content: center;
   text-align: center;
   letter-spacing: 1px;
-  font-size: 1.9rem;
+  font-size: 1.7rem;
 }
 .blog-slider .swiper-container-horizontal > .swiper-pagination-bullets, .blog-slider .swiper-pagination-custom, .blog-slider .swiper-pagination-fraction {
   bottom: 10px;

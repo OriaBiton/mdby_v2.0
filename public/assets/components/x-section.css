@@ -7,7 +7,7 @@ x-section{
   background-color: var(--brightest);
 }
 x-section > h2{
-  font-size: 36px;
+  font-size: 34px;
   color: var(--brightest);
   width: 100%;
   background-color: var(--primary);

@@ -1,4 +1,4 @@
-addEventListener('firebaseLoaded', setLatestVideo);
+addEventListener('load', setLatestVideo, {once: true});
 
 async function setLatestVideo() {
   const div = document.getElementById('vid');

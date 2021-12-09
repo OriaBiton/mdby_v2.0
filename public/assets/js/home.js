@@ -1,4 +1,5 @@
 var isOpen;
+var tippySet;
 
 setReveal();
 setServices();
@@ -8,7 +9,8 @@ setInterval(markAsOpenOrClosed, 60000);
 window.addEventListener('load', loaded);
 
 function loaded(){
-  tippy('[data-tippy-content]', {
+  if (tippySet) return;
+  tippySet = tippy('[data-tippy-content]', {
     theme: 'light', allowHTML: true, animation: 'perspective-subtle'
   });
 }

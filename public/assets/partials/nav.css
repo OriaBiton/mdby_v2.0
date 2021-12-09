@@ -28,10 +28,10 @@ nav li{list-style: none;}
   color: var(--secondary);
   font-size: unset;
   line-height: unset;
+  gap: 3vw;
 }
 .top-nav li{
-  margin-left: 3vw;
-  font-size: min(1.8rem, 1.4vw);
+  font-size: min(1.6rem, 1.4vw);
   position: relative;
   transition: .5s;
 }
@@ -57,11 +57,9 @@ nav li{list-style: none;}
 .top-nav .icons{
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
 .top-nav .icons > *{
-  font-size: var(--icon-size);
-  max-height: var(--icon-size);
-  margin-right: 1rem;
   filter:sepia(.3) grayscale(.5)
 }
 .top-nav .icons > *:hover{filter: grayscale(0);}
@@ -165,7 +163,7 @@ nav li{list-style: none;}
   color: var(--brightest);
 }
 .side-nav li{
-  font-size: 2rem;
+  font-size: 1.7rem;
   padding: 2rem 1rem;
   color: var(--brightest);
   width: 100%;
@@ -228,6 +226,7 @@ nav li{list-style: none;}
   position: absolute;
   top: 2rem;
   left: 2rem;
+  font-size: 2rem;
 }
 .dropdown.active::after{transform: rotate(-90deg)}
 .side-nav .dropdown-content a {

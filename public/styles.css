@@ -28,11 +28,10 @@ html.is-animating .transition-fade {
 body.loading{background-color: var(--highlight);}
 body.loading > *:not(loading-screen){display: none;}
 body{
-  font-family: "Rubik", "Calibri", "Arial", sans-serif;
+  font-family: "Noto Sans Hebrew", "Calibri", "Arial", sans-serif;
   margin: 0; padding: 0;
   color: var(--dark);
 }
-
 body::-webkit-scrollbar{width: 12px;}
 body::-webkit-scrollbar-track{background-color: var(--bright);}
 body::-webkit-scrollbar-thumb{background-color: var(--highlight);}
@@ -40,7 +39,10 @@ a{
   text-decoration: none;
   color: inherit;
 }
-button{cursor: pointer;}
+button{
+  cursor: pointer;
+  font-family: "Noto Sans Hebrew", "Calibri", "Arial", sans-serif;
+}
 img, iframe{max-width: 100%; max-height: 100%;}
 main{
   padding: 8rem 0 15rem 0;
@@ -134,7 +136,6 @@ h5{font-size: 2rem; font-weight: 100; margin: 1.5rem 0;}
   column-gap: 2vw;
   margin-bottom: 5rem;
 }
-
 .cols-3{column-count: 3}
 .cols-3 div{display: inline-block;}
 .cols-2{column-count: 2}
@@ -151,7 +152,23 @@ main ul, main ol{padding-right: 2rem;}
 main a{
   text-decoration: none;
   color: var(--primary);
-  transition: color 0.2s;
+  transition: .25s;
+  position: relative;
+  display: inline-block;
+
+}
+main a::after{
+  content: '';
+  width: 0;
+  height: 5px;
+  background-color: var(--highlight);
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  transition: .25s;
+}
+main a:hover::after{
+  width: 100%;
 }
 a.cta, button{
   font-size: 26px;
@@ -215,7 +232,7 @@ input[type="radio"], input[type="checkbox"]{
 .inline{display: inline}
 ::placeholder {opacity: .3}
 label {
-	font-size: 1.8rem;
+	font-size: 1.6rem;
 	margin-bottom: .5rem;
 	display: block;
   text-align: right;

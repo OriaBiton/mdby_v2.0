@@ -1,4 +1,4 @@
-addEventListener('firebaseLoaded', setPictures);
+addEventListener('load', setPictures, {once: true});
 
 function setPictures() {
   const picturesDiv = document.getElementById('pictures');

@@ -1,10 +1,12 @@
+console.log('updates');
 setContent().then(setSwiper);
 
 async function setContent(){
   const wrapper = document.querySelector('.blog-slider__wrp');
   const updates = await (await fetch('/assets/partials/updates.json')).json();
+  wrapper.innerHTML = null;
   for (const update of updates){
-    const {title, content, date, img, link, linkText} = update;    
+    const {title, content, date, img, link, linkText} = update;
     wrapper.innerHTML += `
     <div class="blog-slider__item swiper-slide">
       <div class="blog-slider__img">

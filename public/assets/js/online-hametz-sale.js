@@ -1,4 +1,4 @@
-addEventListener('firebaseLoaded', () => {
+addEventListener('load', () => {
   const form = document.querySelector('form');
 
   document.getElementById('represent').addEventListener('change', enableRepresented);
@@ -58,4 +58,4 @@ addEventListener('firebaseLoaded', () => {
     represented.disabled = !e.target.checked;
   }
 
-});
+}, {once: true});

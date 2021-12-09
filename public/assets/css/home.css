@@ -24,11 +24,22 @@ h2{
   opacity: 1;
   margin-bottom: 12rem;
 }
+h2::after{
+  content: '';
+  width: calc(100% - 5rem);
+  height: 9px;
+  background-color: var(--highlight);
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  border-radius: 0 0 0 1rem;
+}
 h2.reveal{
   transform: translateX(min(100rem, 80vw));
   width: 100%;
   opacity: 0;
 }
+main a::after{all: unset;}
 .cards{
   display: flex;
   flex-wrap: wrap;
@@ -44,6 +55,17 @@ h2.reveal{
   text-align: center;
   transition: .35s;
 }
+.card::after{
+  content: '';
+  width: 0;
+  height: 5px;
+  background-color: var(--highlight);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transition: .3s;
+}
+.card:hover::after{width: 100%;}
 .card img{
   width: 21rem;
   border-radius: 3px 3px 0 0;
@@ -60,6 +82,7 @@ h2.reveal{
 .card:hover .title{color: var(--primary);}
 .cards.hover .card:not(:hover){
   transform: scale(.8);
+  filter: brightness(0.9);
   opacity: .8;
   box-shadow: none;
 }
@@ -177,14 +200,14 @@ img.cloud{
 .opening-day{
   display: flex;
   justify-content: space-between;  
-  font-size: 2rem;
+  font-size: 1.7rem;
   padding: 0.6rem;
   border-radius: 5px;  
 }
 .opening-day:hover{background-color: var(--highlight);}
 .tablet i{font-size: 5rem;}
 .tablet h4{font-size: 2rem; margin-bottom: 1.4rem;}
-.accessability p{font-size: 1.6rem;}
+.accessability p{font-size: 1.4rem;}
 
 section#communicate{
   background: aliceblue;
@@ -215,7 +238,7 @@ section#communicate{
   right: 14px;
   letter-spacing: 4px;
   transition: .5s;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 

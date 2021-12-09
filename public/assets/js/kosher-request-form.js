@@ -1,4 +1,4 @@
-addEventListener('firebaseLoaded', () => {
+addEventListener('load', () => {
   const criteriaDiv = document.getElementById('criteria');
   document.querySelectorAll('[name="type"]')
     .forEach(box => box.addEventListener('change', toggleCriterion));
@@ -79,4 +79,4 @@ addEventListener('firebaseLoaded', () => {
     e.classList.remove('hidden');
   }
 
-})
+}, {once: true});
