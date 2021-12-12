@@ -30,25 +30,7 @@ function markAsOpenOrClosed() {
     if (!isOpen) return;
     h3.innerHTML = 'המועצה <span class="danger">סגורה</span> כעת';
     isOpen = false;
-  }
-  function checkIsOpen() {
-    const date = new Date();
-    const day = date.getDay();
-    const hour = date.getHours();
-    const mins = date.getMinutes();
-    if (day == 0 || day == 2 || day == 4) {
-      if (hour >= 8 && hour < 12) {
-        if (hour == 8 && mins < 30) return false;
-        else return true;
-      }
-    }
-    if (day == 1 || day == 3) {
-      if (hour >= 8 && hour < 12) {
-        if (hour == 8 && mins < 30) return true;
-        else return true;
-      }
-    }
-  }
+  }  
 }
 function setBot(){
   const wrapper = document.querySelector('.communication-channels');

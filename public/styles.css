@@ -11,7 +11,7 @@
   --grey: #ededed;
   --grad1: linear-gradient(147deg, var(--primary), #084E8D);
   --good: rgb(37, 224, 137);
-  --danger: rgb(226, 63, 13);  
+  --danger: #F2603F;
 }
 html, body{
   font-size: 10px;
@@ -192,7 +192,8 @@ a.menu{
   box-sizing: border-box;
   margin: 2.5rem auto;
 }
-a.menu:hover, a.cta:hover, button:hover{
+:is(a.menu, a.cta, button):hover::after{content: unset;}
+a.menu:hover, a.cta:hover, button:hover{  
   background-color: var(--darkest);
 }
 .ml-1{margin-left: 10px;}

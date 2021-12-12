@@ -1,7 +1,18 @@
 setNav();
 FillHebDate();
 FillShabbatInfo();
+fillIsOpen();
 
+function fillIsOpen(){
+  const isOpenDiv = document.getElementById('top-nav-is-open');
+  const bulb = isOpenDiv.querySelector('.time-icon');
+  const span = isOpenDiv.querySelector('span');
+  const open = checkIsOpen();
+  const cssVar = open ? 'good' : 'danger';
+  const word = open ? 'פתוחה' : 'סגורה';
+  bulb.style.backgroundColor = `var(--${cssVar})`;
+  span.innerHTML = `המועצה <strong>${word}</strong> כעת`;
+}
 async function FillHebDate(){
   const date = new Date();
   const y = date.getFullYear(),
@@ -106,6 +117,25 @@ function setNav(){
       if (window.scrollY > sticyPoint) topNav.classList.add('sticky');
       else topNav.classList.remove('sticky');
     });
+  }
+}
+
+function checkIsOpen() {
+  const date = new Date();
+  const day = date.getDay();
+  const hour = date.getHours();
+  const mins = date.getMinutes();
+  if (day == 0 || day == 2 || day == 4) {
+    if (hour >= 8 && hour < 12) {
+      if (hour == 8 && mins < 30) return false;
+      else return true;
+    }
+  }
+  if (day == 1 || day == 3) {
+    if (hour >= 8 && hour < 12) {
+      if (hour == 8 && mins < 30) return true;
+      else return true;
+    }
   }
 }
 

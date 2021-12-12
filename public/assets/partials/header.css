@@ -1,5 +1,4 @@
 header {
-  padding-top: 13rem;
   background: linear-gradient(
     130deg, var(--bright), white);
   position: relative;
@@ -24,9 +23,12 @@ header .container{
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding-bottom: 20rem;
+  padding: 13rem 0 20rem 0;
 }
-.logo-container{text-align: right;}
+.logo-container{
+  text-align: right;
+  padding-top: 6.5rem;
+}
 h1:not(.logo){
   font-size: 9rem;
   color: var(--brightest);
@@ -103,25 +105,24 @@ header .wave-bottom .shape-fill {
 }
 @media screen and (max-width: 750px) {
   header .wave-bottom{width: 190%;}
-  header{
-    padding-top: 7rem;
-  }
   header .bg-img{
     height: 100%;
     object-fit: cover;
     mask-image: linear-gradient(to top, rgb(0, 0, 0), rgba(0,0,0,0));
     -webkit-mask-image: linear-gradient(to top, rgb(0, 0, 0), rgba(0,0,0,0));
+    min-width: 100%;
   }
   .hero{width: unset;}
   .hero-wrapper{
     width: 95%;
     display: block;
+    padding-top: 7rem;
   }
   header a.btn{
     display: block;
     text-align: center;
   }
-  header .logo{min-height: 6rem;}
+  .hero .logo{min-height: 6rem;}
   header h1:not(.logo){
     font-size: 4rem;
     padding: 2rem;
@@ -134,7 +135,8 @@ header .wave-bottom .shape-fill {
     margin-left: 0;
     margin-bottom: 2rem;
   }
-  .updates{
-    width: unset;
-  }
+  .logo-container{
+    height: 7rem;
+    margin-bottom: 5rem;
+  }  
 }
