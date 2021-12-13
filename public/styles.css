@@ -123,18 +123,17 @@ h5{font-size: 2rem; font-weight: 100; margin: 1.5rem 0;}
 .p-side-3{padding-left: 3rem; padding-right: 3rem;}
 .p-0{padding: 0}
 .p-2{padding: 20px;}
-.post{
-  padding: 7px;
-  background-color: var(--brightest);
-  border: 2px solid #eee;
-  box-shadow: 0 5px 15px -2px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  box-sizing: border-box;
-}
 .split2{
-  column-count: 2;
+  /* column-count: 2; */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
   column-gap: 2vw;
   margin-bottom: 5rem;
+}
+.split2 > *{
+  max-width: 50%;
 }
 .cols-3{column-count: 3}
 .cols-3 div{display: inline-block;}

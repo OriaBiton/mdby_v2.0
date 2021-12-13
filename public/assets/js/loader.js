@@ -9,6 +9,7 @@ export default class Loader {
       console.log('resources');
       setLoaderDiv();
       setTitles();
+      setHeaderImage();
       notyf();
       await firebase();      
     }
@@ -16,6 +17,15 @@ export default class Loader {
       console.log('setNewPage');
       await resources();
       runScripts();
+    }
+    function setHeaderImage(){
+      const loadDivImg = Loader.div.dataset.img;
+      const fallbackImg = document.querySelector('main img.post')?.src;
+      const imgToSet = loadDivImg || fallbackImg;
+      if (!imgToSet) return;
+      console.log(imgToSet);
+      const headerImg = document.querySelector('header .bg-img');
+      headerImg.src = imgToSet;
     }
     function runScripts(){
       console.log('runScripts');

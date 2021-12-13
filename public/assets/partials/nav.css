@@ -118,6 +118,7 @@ nav li{list-style: none;}
   background-color: var(--danger);
   border-radius: 50%;
   display: inline-block;
+  opacity: .65;
 }
 
 .side-nav{
