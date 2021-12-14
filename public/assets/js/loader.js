@@ -2,57 +2,28 @@ export default class Loader {
   static init(){
     Loader.css = [];
     document.addEventListener('DOMContentLoaded', DOMLoaded);
-    window.addEventListener('pageReplaced', setNewPage);
     resources();
     
     async function resources(){
       console.log('resources');
       setLoaderDiv();
-      setTitles();
       setHeaderImage();
+      setTitles();
       notyf();
-      await firebase();      
+      await firebase();
     }
-    async function setNewPage(){
-      console.log('setNewPage');
-      await resources();
-      runScripts();
-    }
+
     function setHeaderImage(){
+      if (isHome()) return;
       const loadDivImg = Loader.div.dataset.img;
       const fallbackImg = document.querySelector('main img.post')?.src;
       const imgToSet = loadDivImg || fallbackImg;
       if (!imgToSet) return;
-      console.log(imgToSet);
       const headerImg = document.querySelector('header .bg-img');
       headerImg.src = imgToSet;
     }
-    function runScripts(){
-      console.log('runScripts');
-      const scripts = document.querySelectorAll(":is(main, header) script");
-      Loader.scriptsToLoad = scripts.length;
-      Loader.scriptsLoaded = 0;
-
-      for (const oldScript of scripts) {
-        const newScript = document.createElement("script");
-        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-        oldScript.parentNode.replaceChild(newScript, oldScript);
-        newScript.addEventListener('load', countUntilLoad, {once: true});
-      }
-
-      function countUntilLoad(){
-        Loader.scriptsLoaded++;
-        console.log('loaded: ', Loader.scriptsLoaded);
-        console.log('to Load: ', Loader.scriptsToLoad);
-        if (Loader.scriptsLoaded == Loader.scriptsToLoad){
-          console.log('scriptsToLoad >= scriptsLoaded');
-          window.dispatchEvent(new Event('load'));            
-        }
-      }
-    }
     function setTitles(){
-      if (location.pathname == '/') return;
+      if (isHome()) return;
       const title = Loader.div?.dataset?.title;
       if (title) document.title = title;
       document.querySelector('header h1').innerText = document.title;
@@ -69,18 +40,49 @@ export default class Loader {
     }
 
     function setSwup(){
-      Loader.swup = new Swup({
+      const swup = new Swup({
         linkSelector: `a[href]:not([href^="#"]):not([data-no-swup]):not([href="/"]):not([target="_blank"])`,
         animateHistoryBrowsing: true
       });
-      Loader.swup.on('contentReplaced', onContentReplaced);
+      swup.on('contentReplaced', onContentReplaced);
       
       function onContentReplaced(){
-        console.log('Content Replaced');
-        window.dispatchEvent(new Event('pageReplaced'));
-        window.scrollTo(0, 0);
+        console.log('Content Replaced');        
+        setNewPage();
+        window.scrollTo(0, 0);        
+      }
+      async function setNewPage(){
+        console.log('setNewPage');
+        await resources();
+        await runScripts();
+        window.dispatchEvent(new Event('load'));
+      }
+      function runScripts(){
+        return new Promise(res => {
+          console.log('runScripts');
+          const scripts = document.querySelectorAll(":is(header, main) script");
+          console.log(scripts);
+          if (!scripts.length) res();
+          Loader.scriptsToLoad = scripts.length;
+          Loader.scriptsLoaded = 0;
+          for (const oldScript of scripts) {
+            const newScript = document.createElement("script");
+            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+            newScript.addEventListener('load', countLoaded, {once: true});
+          }
+          function countLoaded(){
+            Loader.scriptsLoaded++;
+            if (Loader.scriptsLoaded == Loader.scriptsToLoad){
+              console.log('scriptsToLoad == scriptsLoaded');
+              res();
+            }
+          }
+        });
       }
     }
+
     async function notyf(){
       if (!needs('notyf')) return;
       Loader.loadCss('/assets/notyf/notyf.min.css');
@@ -132,3 +134,5 @@ export default class Loader {
 
 }
 Loader.init();
+
+function isHome(){ return location.pathname == '/'; }

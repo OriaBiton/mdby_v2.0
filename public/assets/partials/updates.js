@@ -1,5 +1,6 @@
-console.log('updates');
-setContent().then(setSwiper);
+window.addEventListener('load', () => {
+  setContent().then(setSwiper);
+}, {once: true});
 
 async function setContent(){
   const wrapper = document.querySelector('.blog-slider__wrp');

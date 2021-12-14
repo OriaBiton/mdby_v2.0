@@ -126,15 +126,12 @@ h5{font-size: 2rem; font-weight: 100; margin: 1.5rem 0;}
 .split2{
   /* column-count: 2; */
   display: flex;
-  flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: space-evenly;  
   column-gap: 2vw;
   margin-bottom: 5rem;
 }
-.split2 > *{
-  max-width: 50%;
-}
+.split2 > *{max-width: 50%;}
 .cols-3{column-count: 3}
 .cols-3 div{display: inline-block;}
 .cols-2{column-count: 2}
@@ -273,7 +270,8 @@ small{font-size: 1.2rem}
   :root{--cardW: 150px;}
   .container{width: 95%;}
   section{margin-bottom: 6rem}
-  .split2{columns: unset;}
+  .split2{columns: unset; flex-wrap: wrap;}
+  .split2 > *{max-width: 100%;}
   .mbl-mb-3{margin-bottom: 30px;}
   textarea{height: 10rem;}
   .p-side-3{padding-left: 1rem; padding-right: 1rem;}

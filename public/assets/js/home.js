@@ -1,20 +1,10 @@
 var isOpen;
-var tippySet;
 
 setReveal();
 setServices();
 markAsOpenOrClosed();
 setBot();
 setInterval(markAsOpenOrClosed, 60000);
-window.addEventListener('load', loaded);
-
-function loaded(){
-  if (tippySet) return;
-  tippySet = tippy('[data-tippy-content]', {
-    theme: 'light', allowHTML: true, animation: 'perspective-subtle'
-  });
-}
-
 
 function markAsOpenOrClosed() {
   const h3 = document.getElementById('is-open');

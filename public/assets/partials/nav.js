@@ -103,7 +103,7 @@ function setNav(){
       openBtn.addEventListener('click', show);
       darkener.addEventListener('click', hide);
       closeBtn.addEventListener('click', hide);
-      window.addEventListener('pageReplaced', hide);
+      window.addEventListener('load', hide);
   
       function show(){ nav.classList.add('expanded'); }
       function hide(){ nav.classList.remove('expanded'); }      
